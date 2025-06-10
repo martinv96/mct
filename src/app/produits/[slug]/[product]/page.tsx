@@ -1,5 +1,3 @@
-// app/produits/[slug]/[product]/page.tsx
-
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
@@ -40,7 +38,21 @@ function slugify(text: string) {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
 }
 
-export default function ProductDetail({ params }: { params: { slug: string; product: string } }) {
+interface Params {
+  slug: string
+  product: string
+}
+
+export async function generateStaticParams(): Promise<Params[]> {
+  return Object.entries(productsByCategory).flatMap(([slug, products]) =>
+    products.map(product => ({
+      slug,
+      product: slugify(product.title),
+    }))
+  )
+}
+
+export default function ProductDetail({ params }: { params: Params }) {
   const products = productsByCategory[params.slug]
   if (!products) return notFound()
 

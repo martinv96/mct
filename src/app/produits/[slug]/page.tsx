@@ -1,5 +1,3 @@
-// app/produits/[slug]/page.tsx
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -17,7 +15,7 @@ const productsByCategory: Record<string, { id: number; title: string; img: strin
   'gros-oeuvre': [
     { id: 1, title: 'Bloc béton', img: '/produits/gros-oeuvre/bloc-beton.jpg', desc: 'Bloc en béton pour construction.' },
     { id: 2, title: 'Brique rouge', img: '/produits/gros-oeuvre/brique.jpg', desc: 'Brique traditionnelle.' },
-    { id: 3, title: 'Ferraillage', img: '/produits/gros-oeuvre/acier.jpg', desc: 'Barres d\'acier pour renfort.' },
+    { id: 3, title: 'Ferraillage', img: '/produits/gros-oeuvre/acier.jpg', desc: "Barres d'acier pour renfort." },
   ],
   'bois': [
     { id: 1, title: 'Madrier', img: '/produits/bois/madrier.jpg', desc: 'Madrier en bois massif.' },
@@ -46,14 +44,17 @@ const productsByCategory: Record<string, { id: number; title: string; img: strin
   ],
 }
 
+function slugify(text: string) {
+  return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
+}
+
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const category = categories.find(cat => cat.id === params.slug)
-
   if (!category) return notFound()
 
   const products = productsByCategory[params.slug] || []
 
-   return (
+  return (
     <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 text-neutral-800">{category.title}</h1>
 
@@ -72,7 +73,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         {products.map(product => (
           <Link
             key={product.id}
-            href={`/produits/${params.slug}/${product.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
+            href={`/produits/${params.slug}/${slugify(product.title)}`}
             className="group rounded-2xl bg-white shadow-md hover:shadow-xl transition duration-300 overflow-hidden border"
           >
             <div className="relative h-48 w-full overflow-hidden">
