@@ -1,12 +1,16 @@
+import Image from 'next/image';
+
 export default function Hero() {
   return (
     <section className="relative h-[85vh] w-full overflow-hidden">
       {/* Image de fond */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/banniere.jpg"
           alt="Bannière MCT Matériaux"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          priority
         />
         {/* Overlay dégradé */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
