@@ -5,7 +5,7 @@ const productsByCategory: Record<string, { id: number; title: string; img: strin
   'gros-oeuvre': [
     { id: 1, title: 'Bloc béton', img: '/produits/gros-oeuvre/bloc-beton.jpg', desc: 'Bloc en béton pour construction.' },
     { id: 2, title: 'Brique rouge', img: '/produits/gros-oeuvre/brique.jpg', desc: 'Brique traditionnelle.' },
-    { id: 3, title: 'Ferraillage', img: '/produits/gros-oeuvre/acier.jpg', desc: 'Barres d\'acier pour renfort.' },
+    { id: 3, title: 'Ferraillage', img: '/produits/gros-oeuvre/acier.jpg', desc: "Barres d'acier pour renfort." },
   ],
   'bois': [
     { id: 1, title: 'Madrier', img: '/produits/bois/madrier.jpg', desc: 'Madrier en bois massif.' },
@@ -52,7 +52,8 @@ export async function generateStaticParams(): Promise<Params[]> {
   )
 }
 
-export default function ProductDetail({ params }: { params: Params }) {
+// Correction clé : wrapper `params` dans un objet `Promise` via `async` 
+export default async function ProductDetail({ params }: { params: Params }) {
   const products = productsByCategory[params.slug]
   if (!products) return notFound()
 

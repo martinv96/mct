@@ -48,45 +48,43 @@ function slugify(text: string) {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+interface Params {
+  slug: string
+}
+
+export async function generateStaticParams(): Promise<Params[]> {
+  return categories.map(category => ({ slug: category.id }))
+}
+
+export default async function CategoryPage({ params }: { params: Params }) {
   const category = categories.find(cat => cat.id === params.slug)
   if (!category) return notFound()
 
-  const products = productsByCategory[params.slug] || []
+  const products = productsByCategory[params.slug] ?? []
 
   return (
-    <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 text-neutral-800">{category.title}</h1>
+    <div className="max-w-6xl mx-auto py-16 px-6">
+      <h1 className="text-4xl font-bold mb-8">{category.title}</h1>
+      <p className="mb-10 text-gray-600">{category.desc}</p>
 
-      <div className="relative w-full h-64 sm:h-96 mb-10 rounded-2xl overflow-hidden shadow-xl">
-        <Image
-          src={category.img}
-          alt={category.title}
-          fill
-          className="object-cover object-center"
-        />
-      </div>
-
-      <p className="text-lg text-gray-700 mb-14 max-w-3xl">{category.desc}</p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {products.map(product => (
           <Link
             key={product.id}
-            href={`/produits/${params.slug}/${slugify(product.title)}`}
-            className="group rounded-2xl bg-white shadow-md hover:shadow-xl transition duration-300 overflow-hidden border"
+            href={`/produits/${category.id}/${slugify(product.title)}`}
+            className="group border border-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
           >
-            <div className="relative h-48 w-full overflow-hidden">
+            <div className="relative w-full h-48">
               <Image
                 src={product.img}
                 alt={product.title}
                 fill
-                className="object-cover transform group-hover:scale-105 transition duration-300 ease-in-out"
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="p-5">
-              <h2 className="font-semibold text-lg text-neutral-900 group-hover:text-blue-700 transition">{product.title}</h2>
-              <p className="mt-2 text-gray-600 text-sm">{product.desc}</p>
+            <div className="p-4">
+              <h2 className="text-xl font-semibold">{product.title}</h2>
+              <p className="mt-2 text-gray-600">{product.desc}</p>
             </div>
           </Link>
         ))}
