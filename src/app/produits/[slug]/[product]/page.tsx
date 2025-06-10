@@ -52,8 +52,8 @@ export async function generateStaticParams(): Promise<Params[]> {
   )
 }
 
-// Correction clé : wrapper `params` dans un objet `Promise` via `async` 
-export default async function ProductDetail({ params }: { params: Params }) {
+// La correction : enlever async sur le composant page et typage simple pour params
+export default function ProductDetail({ params }: { params: Params }) {
   const products = productsByCategory[params.slug]
   if (!products) return notFound()
 
