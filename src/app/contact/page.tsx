@@ -1,10 +1,9 @@
-import ContactForm from '@/components/ContactForm'
+import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
   return (
-    <main className="max-w-3xl mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-8">Contactez-nous</h1>
+    <main className="min-h-screen bg-gradient-to-br from-indigo-50 via-sky-100 to-purple-50 py-24 px-6 flex flex-col items-center">
       <ContactForm />
     </main>
-  )
+  );
 }
