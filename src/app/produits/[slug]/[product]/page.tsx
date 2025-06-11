@@ -16,9 +16,9 @@ const productsByCategory: Record<
   { id: number; title: string; img: string; desc: string }[]
 > = {
   'gros-oeuvre': [
-    { id: 1, title: 'Bloc béton', img: '/produits/gros-oeuvre/bloc-beton.jpg', desc: 'Bloc en béton pour construction.' },
-    { id: 2, title: 'Brique rouge', img: '/produits/gros-oeuvre/brique.jpg', desc: 'Brique traditionnelle.' },
-    { id: 3, title: 'Ferraillage', img: '/produits/gros-oeuvre/acier.jpg', desc: "Barres d'acier pour renfort." },
+    { id: 1, title: 'Bloc béton', img: '/produits/gros-oeuvre/Bloc-beton.jpg', desc: 'Bloc en béton pour construction.' },
+    { id: 2, title: 'Brique rouge', img: '/produits/gros-oeuvre/Brique.jpg', desc: 'Brique traditionnelle.' },
+    { id: 3, title: 'Ferraillage', img: '/produits/gros-oeuvre/Acier.jpg', desc: "Barres d'acier pour renfort." },
   ],
   bois: [
     { id: 1, title: 'Madrier', img: '/produits/bois/madrier.jpg', desc: 'Madrier en bois massif.' },

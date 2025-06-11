@@ -7,8 +7,8 @@ const categories = [
   { id: 'bois', title: 'Bois & Charpente', img: '/produits/bois.jpg', desc: 'Madriers, chevrons, bois lamellé-collé...' },
   { id: 'couverture', title: 'Couverture', img: '/produits/couverture.jpg', desc: 'Tuiles, gouttières, fenêtres de toit...' },
   { id: 'isolation', title: 'Isolation & Cloisons', img: '/produits/isolation.jpg', desc: 'Panneaux, plaques, isolants thermiques...' },
-  { id: 'exterieurs', title: 'Aménagements extérieurs', img: '/produits/exterieur.jpg', desc: 'Dallage, clôtures, pierres naturelles...' },
-  { id: 'outillage', title: 'Outillage & Quincaillerie', img: '/produits/quincaillerie.jpg', desc: 'Outils de chantier, visserie, EPI...' },
+  { id: 'exterieurs', title: 'Aménagements extérieurs', img: '/produits/Exterieur.jpg', desc: 'Dallage, clôtures, pierres naturelles...' },
+  { id: 'outillage', title: 'Outillage & Quincaillerie', img: '/produits/Quincaillerie.jpg', desc: 'Outils de chantier, visserie, EPI...' },
 ]
 
 export default function ProductsSection() {
